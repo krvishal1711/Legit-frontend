@@ -1,0 +1,5 @@
+routes:
+  - type: redirect
+    path: /*
+    destination: /
+    status: 200
