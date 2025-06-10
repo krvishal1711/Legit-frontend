@@ -13,6 +13,7 @@ const Admin = () => {
     ctc: "",
     location: "",
     applyLink: "",
+    description: "", // Add description field
   });
   const [jobs, setJobs] = useState([]);
 
@@ -75,9 +76,9 @@ const Admin = () => {
   };
 
   return (
-    <div>
+    <div className="admin-container">
       <h2>Admin - Post a Job</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="admin-form" onSubmit={handleSubmit}>
         {["companyLogo", "companyName", "role", "stipend", "ctc", "location", "applyLink"].map((field) => (
           <input
             key={field}
@@ -89,19 +90,29 @@ const Admin = () => {
             required
           />
         ))}
+        <textarea
+          name="description"
+          placeholder="Description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+          rows={4}
+          style={{ width: "100%", margin: "8px 0" }}
+  />
         <button type="submit">Post Job</button>
       </form>
       <h2>All Jobs</h2>
       {jobs.map((job) => (
-        <div key={job._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
+        <div className="admin-job-card" key={job._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
           <img src={job.companyLogo} alt="logo" width="50" />
           <h3>{job.companyName}</h3>
           <p><strong>Role:</strong> {job.role}</p>
           <p><strong>Stipend:</strong> {job.stipend}</p>
           <p><strong>CTC:</strong> {job.ctc}</p>
           <p><strong>Location:</strong> {job.location}</p>
-          <a href={job.applyLink} target="_blank" rel="noreferrer">
-            <button>Apply</button>
+          <p><strong>Description:</strong> {job.description}</p>
+          <a className="admin-actions" href={job.applyLink} target="_blank" rel="noreferrer">
+            <button className="apply-btn">Apply</button>
           </a>
           <button style={{ marginLeft: "10px", background: "red", color: "white" }} onClick={() => handleDelete(job._id)}>
             Delete

@@ -7,25 +7,36 @@ const JobDetails = () => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
-    axios.get(`https://legit-backend-hjt5.onrender.com/api/jobs`)
-      .then(res => {
-        const foundJob = res.data.find(j => j._id === id);
+    axios
+      .get(`https://legit-backend-hjt5.onrender.com/api/jobs`)
+      .then((res) => {
+        const foundJob = res.data.find((j) => j._id === id);
         setJob(foundJob);
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   }, [id]);
 
   if (!job) return <div>Loading...</div>;
 
   return (
-    <div style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
-      <img src={job.companyLogo} alt="logo" width="50" />
+    <div className="job-details-container">
+      <img src={job.companyLogo} alt="logo" />
       <h3>{job.companyName}</h3>
-      <p><strong>Role:</strong> {job.role}</p>
-      <p><strong>Stipend:</strong> {job.stipend}</p>
-      <p><strong>CTC:</strong> {job.ctc}</p>
-      <p><strong>Location:</strong> {job.location}</p>
-      <p><strong>Description:</strong> {job.description || "No description provided."}</p>
+      <p>
+        <strong>Role:</strong> {job.role}
+      </p>
+      <p>
+        <strong>Stipend:</strong> {job.stipend}
+      </p>
+      <p>
+        <strong>CTC:</strong> {job.ctc}
+      </p>
+      <p>
+        <strong>Location:</strong> {job.location}
+      </p>
+      <div className="job-details-description">
+        {job.description || "No description provided."}
+      </div>
       <a href={job.applyLink} target="_blank" rel="noreferrer">
         <button>Apply</button>
       </a>

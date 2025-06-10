@@ -13,9 +13,12 @@ const JobList = () => {
 
   return (
     <div>
+      <header className="header">
+        <h1>JobEase.</h1>
+      </header>
       <h2>Latest Jobs</h2>
       {jobs.map((job) => (
-        <div key={job._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
+        <div key={job._id} className="job-list" style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" ,display: "flex", alignItems: "center" , flexDirection: "column"}}>
           <img src={job.companyLogo} alt="logo" width="50" />
           <h3>{job.companyName}</h3>
           <p><strong>Role:</strong> {job.role}</p>
