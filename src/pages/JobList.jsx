@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Add this import
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -21,9 +22,9 @@ const JobList = () => {
           <p><strong>Stipend:</strong> {job.stipend}</p>
           <p><strong>CTC:</strong> {job.ctc}</p>
           <p><strong>Location:</strong> {job.location}</p>
-          <a href={job.applyLink} target="_blank" rel="noreferrer">
-            <button>Apply</button>
-          </a>
+          <Link to={`/jobs/${job._id}`}>
+            <button>Details</button>
+          </Link>
         </div>
       ))}
     </div>
