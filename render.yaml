@@ -3,3 +3,4 @@ routes:
     path: /*
     destination: /
     status: 200
+    
