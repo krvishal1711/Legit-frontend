@@ -1,5 +1,5 @@
 routes:
-  - type: redirect
+  - type: rewrite
     path: /*
     destination: /
     status: 200
