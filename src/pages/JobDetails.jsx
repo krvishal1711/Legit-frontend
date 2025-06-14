@@ -34,9 +34,9 @@ const JobDetails = () => {
       <p>
         <strong>Location:</strong> {job.location}
       </p>
-      <div className="job-details-description">
-        {job.description || "No description provided."}
-      </div>
+      <p>
+        <strong>Description: </strong>{job.description || "No description provided."}
+      </p>
       <a href={job.applyLink} target="_blank" rel="noreferrer">
         <button>Apply</button>
       </a>

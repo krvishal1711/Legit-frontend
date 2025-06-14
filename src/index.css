@@ -5,7 +5,7 @@
   
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #baaeae;
+  background-color: #4d167700;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -86,16 +86,15 @@
 }
 
 .job-details-container a button:hover {
-  background: #2563eb;
+  background: #081430;
 }
 
 /* Job List Page Styles */
 .header {
-  background: #2563eb;
+  background: #1c0b24;
   color: #fff;
   padding: 28px 0 16px 0;
   text-align: center;
-  border-radius: 0 0 16px 16px;
   margin-bottom: 24px;
   width: 100%;
 }
@@ -107,7 +106,7 @@
 }
 
 .job-list {
-  background: #f8fafc;
+  background: #d5d4e4;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   margin: 16px auto;
@@ -115,7 +114,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 420px;
+  max-width: 100%;
   box-shadow: 0 2px 12px rgba(37,99,235,0.06);
   transition: box-shadow 0.2s;
 }
@@ -125,10 +124,10 @@
 }
 
 .job-list img {
-  width: 56px;
-  height: 56px;
+  width: 53vh;
+  height: 35vh;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: 7px;
   background: #fff;
   border: 1px solid #e2e8f0;
   margin-bottom: 10px;
