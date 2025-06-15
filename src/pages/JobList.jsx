@@ -50,9 +50,9 @@ const JobList = () => {
           <p><strong>Stipend:</strong> {job.stipend}</p>
           <p><strong>CTC:</strong> {job.ctc}</p>
           <p><strong>Location:</strong> {job.location}</p>
-          <a href={`/jobs/${job._id}`} target="_blank" rel="noreferrer">
+          <Link to={`/jobs/${job._id}`}>
             <button>Details</button>
-          </a>
+          </Link>
         </div>
       ))}
     </div>
