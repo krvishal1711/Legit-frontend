@@ -25,7 +25,7 @@ const JobList = () => {
   return (
     <div className="joblist-container">
       <header className="joblist-header">
-        <h1>JobEase.</h1>
+        <h1>JobEase</h1>
         <button className="joblist-add-btn" onClick={handleAddJob}>
           Add Job
         </button>
