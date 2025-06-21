@@ -7,9 +7,10 @@ const JobList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("https://legit-backend-hjt5.onrender.com/api/jobs")
-      .then(res => setJobs(res.data))
-      .catch(err => console.error(err));
+    axios
+      .get("https://legit-backend-hjt5.onrender.com/api/jobs")
+      .then((res) => setJobs(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   // Handler for Add Job button
@@ -37,13 +38,21 @@ const JobList = () => {
             <img src={job.companyLogo} alt="logo" className="joblist-logo" />
             <div className="joblist-info">
               <h3>{job.companyName}</h3>
-              <p><strong>Role:</strong> {job.role}</p>
-              <p><strong>Stipend:</strong> {job.stipend}</p>
-              <p><strong>CTC:</strong> {job.ctc}</p>
-              <p><strong>Location:</strong> {job.location}</p>
+              <p>
+                <strong>Role:</strong> {job.role}
+              </p>
+              <p>
+                <strong>Stipend:</strong> {job.stipend}
+              </p>
+              <p>
+                <strong>CTC:</strong> {job.ctc}
+              </p>
+              <p>
+                <strong>Location:</strong> {job.location}
+              </p>
             </div>
             <a
-              href={`/jobs/${job._id}`}
+              href={`https://legit-frontend-kdtr.onrender.com/jobs/${job._id}`}
               target="_blank"
               rel="noreferrer"
               className="joblist-details-link"
