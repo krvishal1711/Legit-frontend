@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"; // Add useNavigate
+import { useNavigate } from "react-router-dom";
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -23,38 +23,36 @@ const JobList = () => {
   };
 
   return (
-    <div>
-      <header className="header">
+    <div className="joblist-container">
+      <header className="joblist-header">
         <h1>JobEase.</h1>
-      </header>
-      <div style={{ textAlign: "right", margin: "10px 20px" }}>
-        <button onClick={handleAddJob} style={{
-          background: "#2563eb",
-          color: "#fff",
-          border: "none",
-          padding: "10px 22px",
-          borderRadius: "6px",
-          fontSize: "1rem",
-          fontWeight: 600,
-          cursor: "pointer"
-        }}>
+        <button className="joblist-add-btn" onClick={handleAddJob}>
           Add Job
         </button>
+      </header>
+      <h2 className="joblist-title">Latest Job Openings</h2>
+      <div className="joblist-list">
+        {jobs.map((job) => (
+          <div key={job._id} className="joblist-card">
+            <img src={job.companyLogo} alt="logo" className="joblist-logo" />
+            <div className="joblist-info">
+              <h3>{job.companyName}</h3>
+              <p><strong>Role:</strong> {job.role}</p>
+              <p><strong>Stipend:</strong> {job.stipend}</p>
+              <p><strong>CTC:</strong> {job.ctc}</p>
+              <p><strong>Location:</strong> {job.location}</p>
+            </div>
+            <a
+              href={`/jobs/${job._id}`}
+              target="_blank"
+              rel="noreferrer"
+              className="joblist-details-link"
+            >
+              <button className="joblist-details-btn">Details</button>
+            </a>
+          </div>
+        ))}
       </div>
-      <h2>Latest Job Openings</h2>
-      {jobs.map((job) => (
-        <div key={job._id} className="job-list">
-          <img src={job.companyLogo} alt="logo" width="50" />
-          <h3>{job.companyName}</h3>
-          <p><strong>Role:</strong> {job.role}</p>
-          <p><strong>Stipend:</strong> {job.stipend}</p>
-          <p><strong>CTC:</strong> {job.ctc}</p>
-          <p><strong>Location:</strong> {job.location}</p>
-          <Link to={`/jobs/${job._id}`}>
-            <button>Details</button>
-          </Link>
-        </div>
-      ))}
     </div>
   );
 };

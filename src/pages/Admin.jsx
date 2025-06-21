@@ -13,11 +13,10 @@ const Admin = () => {
     ctc: "",
     location: "",
     applyLink: "",
-    description: "", // Add description field
+    description: "",
   });
   const [jobs, setJobs] = useState([]);
 
-  // Fetch jobs for admin
   useEffect(() => {
     fetchJobs();
   }, []);
@@ -52,6 +51,7 @@ const Admin = () => {
         ctc: "",
         location: "",
         applyLink: "",
+        description: "",
       });
       fetchJobs();
     } catch (error) {
@@ -77,48 +77,64 @@ const Admin = () => {
 
   return (
     <div className="admin-container">
-      <h2>Admin - Post a Job</h2>
-      <form className="admin-form" onSubmit={handleSubmit}>
-        {["companyLogo", "companyName", "role", "stipend", "ctc", "location", "applyLink"].map((field) => (
-          <input
-            key={field}
-            type="text"
-            name={field}
-            placeholder={field}
-            value={formData[field]}
+      <section className="admin-section">
+        <h2 className="admin-title">Admin – Post a Job</h2>
+        <form className="admin-form" onSubmit={handleSubmit}>
+          {["companyLogo", "companyName", "role", "stipend", "ctc", "location", "applyLink"].map((field) => (
+            <input
+              key={field}
+              type="text"
+              name={field}
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              value={formData[field]}
+              onChange={handleChange}
+              required
+            />
+          ))}
+          <textarea
+            name="description"
+            placeholder="Description"
+            value={formData.description}
             onChange={handleChange}
             required
+            rows={4}
           />
-        ))}
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-          rows={4}
-          style={{ width: "100%", margin: "8px 0" }}
-  />
-        <button type="submit">Post Job</button>
-      </form>
-      <h2>All Jobs</h2>
-      {jobs.map((job) => (
-        <div className="admin-job-card" key={job._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
-          <img src={job.companyLogo} alt="logo" width="50" />
-          <h3>{job.companyName}</h3>
-          <p><strong>Role:</strong> {job.role}</p>
-          <p><strong>Stipend:</strong> {job.stipend}</p>
-          <p><strong>CTC:</strong> {job.ctc}</p>
-          <p><strong>Location:</strong> {job.location}</p>
-          <p><strong>Description:</strong> {job.description}</p>
-          <a className="admin-actions" href={job.applyLink} target="_blank" rel="noreferrer">
-            <button className="apply-btn">Apply</button>
-          </a>
-          <button style={{ marginLeft: "10px", background: "red", color: "white" }} onClick={() => handleDelete(job._id)}>
-            Delete
-          </button>
+          <button type="submit" className="admin-btn admin-btn-primary">Post Job</button>
+        </form>
+      </section>
+      <section className="admin-section">
+        <h2 className="admin-title">All Jobs</h2>
+        <div className="admin-job-list">
+          {jobs.map((job) => (
+            <div className="admin-job-card" key={job._id}>
+              <div className="admin-job-header">
+                <img src={job.companyLogo} alt="logo" />
+                <div>
+                  <h3>{job.companyName}</h3>
+                  <span className="admin-job-role">{job.role}</span>
+                </div>
+              </div>
+              <div className="admin-job-details">
+                <p><strong>Stipend:</strong> {job.stipend}</p>
+                <p><strong>CTC:</strong> {job.ctc}</p>
+                <p><strong>Location:</strong> {job.location}</p>
+                <p><strong>Description:</strong> {job.description}</p>
+              </div>
+              <div className="admin-actions">
+                <a href={job.applyLink} target="_blank" rel="noreferrer">
+                  <button className="admin-btn admin-btn-success">Apply</button>
+                </a>
+                <button
+                  className="admin-btn admin-btn-danger"
+                  onClick={() => handleDelete(job._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </section>
     </div>
   );
 };
