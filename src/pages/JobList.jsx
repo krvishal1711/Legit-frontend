@@ -53,7 +53,6 @@ const JobList = () => {
             </div>
             <a
               href={`https://legit-frontend-kdtr.onrender.com/jobs/${job._id}`}
-              target="_blank"
               rel="noreferrer"
               className="joblist-details-link"
             >
