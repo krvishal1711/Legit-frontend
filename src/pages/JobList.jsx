@@ -50,14 +50,13 @@ const JobList = () => {
               <p>
                 <strong>Location:</strong> {job.location}
               </p>
-            </div>
-            <a
-              href={`https://legit-frontend-kdtr.onrender.com/jobs/${job._id}`}
-              rel="noreferrer"
-              className="joblist-details-link"
+            </div>{" "}
+            <button
+              className="joblist-details-btn"
+              onClick={() => navigate(`/jobs/${job._id}`)}
             >
-              <button className="joblist-details-btn">Details</button>
-            </a>
+              Details
+            </button>
           </div>
         ))}
       </div>
